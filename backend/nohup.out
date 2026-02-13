@@ -1,0 +1,22 @@
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.1.186.13:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 123-820-720
+127.0.0.1 - - [12/Feb/2026 02:49:20] "GET / HTTP/1.1" 200 -
+10.1.186.17 - - [12/Feb/2026 02:53:19] "GET / HTTP/1.1" 200 -
+10.1.186.17 - - [12/Feb/2026 02:53:44] "GET / HTTP/1.1" 200 -
+10.1.186.17 - - [12/Feb/2026 02:53:44] code 400, message Bad request syntax ('\x16\x03\x01\x07O\x01\x00\x07K\x03\x03')
+10.1.186.17 - - [12/Feb/2026 02:53:44] "[31m[1m\x16\x03\x01\x07O\x01\x00\x07K\x03\x03[0m" 400 -
+10.1.186.17 - - [12/Feb/2026 02:53:44] code 400, message Bad request syntax ('\x16\x03\x01\x02~\x01\x00\x02z\x03\x03·:|òøÌÕ&ÏÊF\x9b7*\x02Á')
+10.1.186.17 - - [12/Feb/2026 02:53:44] "[31m[1m\x16\x03\x01\x02~\x01\x00\x02z\x03\x03·:|òøÌÕ&ÏÊF\x9b7*\x02Á[0m" 400 -
+10.1.186.17 - - [12/Feb/2026 02:56:39] "GET / HTTP/1.1" 200 -
+10.1.186.17 - - [12/Feb/2026 02:56:39] code 400, message Bad request version ('·\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+10.1.186.17 - - [12/Feb/2026 02:56:39] "[31m[1m\x16\x03\x01\x07f\x01\x00\x07b\x03\x03U» ÉxD\x18\x1bøîu¦ÕRò=ö\x1aì¦$(\x99[u5o\x992iX\x97 ¯j\x8aSË\x0f'B:(\x9dC\x18j\\\x99\x8f©\x95;_\x87 {ð%\x94-_È ·\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À[0m" 400 -
+10.1.186.17 - - [12/Feb/2026 02:56:39] code 400, message Bad request version ('ÈmÂyüê¶Ê/å¤~Ù¼+óF\x8cQr\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À')
+10.1.186.17 - - [12/Feb/2026 02:56:39] "[31m[1m\x16\x03\x01\x02\x95\x01\x00\x02\x91\x03\x03[ýOo\x14¹AÈ\x10M¬Ð©¥U·\x83îÌ\x14e¶¿Ú[ãoÈSFÅ! µ²\x01p\x84=~FV£O\x1fÈmÂyüê¶Ê/å¤~Ù¼+óF\x8cQr\x00"\x13\x01\x13\x03\x13\x02À+À/Ì©Ì¨À,À0À[0m" 400 -

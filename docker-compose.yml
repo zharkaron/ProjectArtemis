@@ -1,0 +1,26 @@
+services:
+  flask:
+    build: ./backend
+    container_name: projectartemis_flask
+    restart: unless-stopped
+    expose:
+      - "5000"
+    networks:
+      - artemis_net
+
+  nginx:
+    image: nginx:latest
+    container_name: projectartemis_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - flask
+    restart: unless-stopped
+    networks: 
+      - artemis_net
+
+networks:
+  artemis_net:
+    driver: bridge
