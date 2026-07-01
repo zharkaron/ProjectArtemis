@@ -5,7 +5,7 @@ services:
 
     environment:
       - WG_HOST=165.227.12.213
-      - PASSWORD_HASH='$2a$12$skf7guJVyy9Vz4vokkHVWuTKCHU88HYEZJcRrpK7l45VsFWD5nXle'
+      - PASSWORD_HASH='$2a$12$6uw2bMhYbwQx5pz2O0/U1u1gsRsmWCjG4m0BQuFRSZzfYY3Twvawe'
       - WG_PORT=51820
 
     volumes:
@@ -13,8 +13,6 @@ services:
 
     ports:
       - "51820:51820/udp"
-      - "51821:51821/tcp"
-
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
