@@ -4,15 +4,17 @@ services:
     container_name: wg-easy
 
     environment:
-      - WG_HOST=165.227.12.213
-      - PASSWORD_HASH=$2a$12$nGM/Up.caY6VWHCVZl8b7.Zh24GlrMPJaJuFgCCrC9D/jqK/u64xe
-      - WG_PORT=51820
+      WG_HOST: 165.227.12.213
+      PASSWORD_HASH: "$$2a$$12$$AqrRUIyDx82c1cr10loFlusJJh6KnMtX9iUSllDm7GMBjuvDbQQCK"
+      WG_PORT: 51820
 
     volumes:
       - ./wireguard:/etc/wireguard:Z
 
     ports:
       - "51820:51820/udp"
+      - "51821:51821/tcp"
+
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
