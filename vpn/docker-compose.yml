@@ -5,11 +5,11 @@ services:
 
     environment:
       - WG_HOST=165.227.12.213
-      - PASSWORD=ChangeThisPassword123
+      - PASSWORD_HASH='$2a$12$skf7guJVyy9Vz4vokkHVWuTKCHU88HYEZJcRrpK7l45VsFWD5nXle'
       - WG_PORT=51820
 
     volumes:
-      - ./wireguard:/etc/wireguard
+      - ./wireguard:/etc/wireguard:Z
 
     ports:
       - "51820:51820/udp"
