@@ -5,7 +5,7 @@ services:
 
     environment:
       - WG_HOST=165.227.12.213
-      - PASSWORD_HASH='$2a$12$nGM/Up.caY6VWHCVZl8b7.Zh24GlrMPJaJuFgCCrC9D/jqK/u64xe'
+      - PASSWORD_HASH=$2a$12$nGM/Up.caY6VWHCVZl8b7.Zh24GlrMPJaJuFgCCrC9D/jqK/u64xe
       - WG_PORT=51820
 
     volumes:
