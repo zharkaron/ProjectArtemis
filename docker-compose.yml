@@ -21,8 +21,7 @@ services:
       - net.ipv4.ip_forward=1
     restart: unless-stopped
     networks:
-      internal:
-        ipv4_address: 172.21.0.2
+      - internal
 
   navidrome:
     image: deluan/navidrome:latest
@@ -35,7 +34,8 @@ services:
       ND_SCANSCHEDULE: 1h
     restart: unless-stopped
     networks:
-      - internal
+      internal:
+        ipv4_address: 172.21.0.10
 
   caddy:
     image: caddy:latest
@@ -45,7 +45,8 @@ services:
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro,Z
     networks:
-      - internal
+      internal:
+        ipv4_address: 172.21.0.11
 
   watchtower:
     image: containrrr/watchtower
