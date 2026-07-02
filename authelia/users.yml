@@ -1,6 +1,6 @@
 users:
-  daron:
-    displayname: Daron
+  zharkaron:
+    displayname: Zharkaron
     password: "$PLACEHOLDER"
     email: daron.valdiviaceron@gmail.com
     groups:
