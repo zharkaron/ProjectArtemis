@@ -60,13 +60,13 @@ dockge.zharkaron.lab {
 homepage.zharkaron.lab {
     import tls
     import authelia
-    reverse_proxy homepage:3000
+    reverse_proxy homarr:7575
 }
 
 friends.zharkaron.lab {
     import tls
     import authelia
-    reverse_proxy homepage-friends:3000
+    reverse_proxy homarr:7575
 }
 
 authelia.zharkaron.lab {
