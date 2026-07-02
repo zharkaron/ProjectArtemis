@@ -64,6 +64,22 @@ services:
     command: --interval 300
     restart: unless-stopped
 
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud
+    volumes:
+      - ./nextcloud/data:/var/www/html:Z
+      - ./music/library:/music:ro,Z
+    environment:
+      - NEXTCLOUD_ADMIN_USER=admin
+      - NEXTCLOUD_ADMIN_PASSWORD=changeme
+      - NEXTCLOUD_TRUSTED_DOMAINS=cloud.zharkaron.lab
+      - NEXTCLOUD_DATA_DIR=/var/www/html/data
+    restart: unless-stopped
+    networks:
+      internal:
+        ipv4_address: 172.22.0.12
+
   adguard:
     image: adguard/adguardhome:latest
     container_name: adguard

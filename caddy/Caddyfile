@@ -10,6 +10,10 @@ wireguard.zharkaron.lab:80 {
     reverse_proxy wg-easy:51821
 }
 
+cloud.zharkaron.lab:80 {
+    reverse_proxy nextcloud:80
+}
+
 adguard.zharkaron.lab:80 {
     reverse_proxy adguard:80
 }

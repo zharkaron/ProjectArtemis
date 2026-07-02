@@ -183,6 +183,9 @@ filtering:
     - domain: wireguard.zharkaron.lab
       answer: 172.22.0.11
       enabled: true
+    - domain: cloud.zharkaron.lab
+      answer: 172.22.0.11
+      enabled: true
     - domain: adguard.zharkaron.lab
       answer: 172.22.0.11
       enabled: true
