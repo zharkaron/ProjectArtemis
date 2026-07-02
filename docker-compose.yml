@@ -68,7 +68,7 @@ services:
     image: adguard/adguardhome:latest
     container_name: adguard
     volumes:
-      - ./adguard/AdGuardHome.yaml:/opt/adguardhome/conf/AdGuardHome.yaml:Z
+      - ./adguard/conf:/opt/adguardhome/conf:Z
       - ./adguard/data:/opt/adguardhome/work:Z
     restart: unless-stopped
     networks:
