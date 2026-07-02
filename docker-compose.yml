@@ -177,7 +177,7 @@ services:
     image: redis:alpine
     container_name: authelia-redis
     volumes:
-      - ./authelia/redis:/data:Z
+      - ./authelia/redis:/data
     networks:
       internal:
         ipv4_address: 172.22.0.41
