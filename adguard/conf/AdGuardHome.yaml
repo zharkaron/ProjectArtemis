@@ -54,12 +54,32 @@ filtering:
   rewrites:
     - domain: zharkaron.lab
       answer: 172.21.0.11
+      enabled: true
     - domain: music.zharkaron.lab
       answer: 172.21.0.11
+      enabled: true
     - domain: wireguard.zharkaron.lab
       answer: 172.21.0.11
+      enabled: true
     - domain: adguard.zharkaron.lab
       answer: 172.21.0.11
+      enabled: true
+  filtering:
+    - url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+      name: AdGuard DNS filter
+      enabled: true
+    - url: https://easylist.to/easylist/easylist.txt
+      name: EasyList
+      enabled: true
+    - url: https://easylist.to/easylist/easyprivacy.txt
+      name: EasyPrivacy
+      enabled: true
+    - url: https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblock_plus&showintro=1&mimetype=plaintext
+      name: Peter Lowe's list
+      enabled: true
+    - url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      name: StevenBlack's Unified Hosts
+      enabled: true
   safebrowsing_enabled: true
 filters_update_interval: 24
 http:
