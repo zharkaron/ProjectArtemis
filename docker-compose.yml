@@ -37,7 +37,9 @@ services:
         ipv4_address: 172.22.0.10
 
   caddy:
-    image: caddy:latest
+    build:
+      context: ./caddy
+      dockerfile: Dockerfile
     container_name: caddy
     ports:
       - "80:80"
@@ -167,6 +169,30 @@ services:
     networks:
       internal:
         ipv4_address: 172.22.0.31
+
+  authelia-redis:
+    image: redis:alpine
+    container_name: authelia-redis
+    volumes:
+      - ./authelia/redis:/data:Z
+    networks:
+      internal:
+        ipv4_address: 172.22.0.41
+    restart: unless-stopped
+
+  authelia:
+    image: authelia/authelia:latest
+    container_name: authelia
+    volumes:
+      - ./authelia:/config:Z
+    environment:
+      - TZ=UTC
+    networks:
+      internal:
+        ipv4_address: 172.22.0.40
+    depends_on:
+      - authelia-redis
+    restart: unless-stopped
 
 networks:
   default:

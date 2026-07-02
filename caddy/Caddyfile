@@ -1,39 +1,60 @@
+(authelia) {
+    forward_auth authelia:9091 {
+        uri /api/authz/forward-auth
+        copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+    }
+}
+
 zharkaron.lab:80 {
+    import authelia
     redir / /adguard/
 }
 
 music.zharkaron.lab:80 {
+    import authelia
     reverse_proxy navidrome:4533
 }
 
 wireguard.zharkaron.lab:80 {
+    import authelia
     reverse_proxy wg-easy:51821
 }
 
 cloud.zharkaron.lab:80 {
+    import authelia
     reverse_proxy nextcloud:80
 }
 
 adguard.zharkaron.lab:80 {
+    import authelia
     reverse_proxy adguard:80
 }
 
 monitoring.zharkaron.lab:80 {
+    import authelia
     reverse_proxy beszel:8090
 }
 
 beszel.zharkaron.lab:80 {
+    import authelia
     reverse_proxy beszel:8090
 }
 
 dockge.zharkaron.lab:80 {
+    import authelia
     reverse_proxy dockge:5001
 }
 
 homepage.zharkaron.lab:80 {
+    import authelia
     reverse_proxy homepage:3000
 }
 
 friends.zharkaron.lab:80 {
+    import authelia
     reverse_proxy homepage-friends:3000
+}
+
+authelia.zharkaron.lab:80 {
+    reverse_proxy authelia:9091
 }
