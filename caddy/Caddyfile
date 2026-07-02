@@ -17,3 +17,15 @@ cloud.zharkaron.lab:80 {
 adguard.zharkaron.lab:80 {
     reverse_proxy adguard:80
 }
+
+monitoring.zharkaron.lab:80 {
+    reverse_proxy beszel:9520
+}
+
+beszel.zharkaron.lab:80 {
+    redir /monitoring.zharkaron.lab{uri}
+}
+
+dockge.zharkaron.lab:80 {
+    reverse_proxy dockge:5001
+}
