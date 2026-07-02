@@ -145,29 +145,33 @@ services:
       internal:
         ipv4_address: 172.22.0.22
 
-  homepage:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
+  homarr:
+    image: ghcr.io/homarr-labs/homarr:latest
+    container_name: homarr
     restart: unless-stopped
-    environment:
-      - HOMEPAGE_ALLOWED_HOSTS=homepage.zharkaron.lab
     volumes:
-      - ./homepage/config:/app/config:Z
+      - ./homarr/config:/appdata:Z
+      - /var/run/docker.sock:/var/run/docker.sock:ro,Z
+      - ./caddy/certs:/certs:ro,Z
+    environment:
+      - TZ=UTC
+      - SECRET_ENCRYPTION_KEY=x4Pk7Htb+mSWRz5j4Ffd6RgX8ICRPXsO1Dy7vvG1toE
+      - AUTH_PROVIDERS=oidc
+      - AUTH_OIDC_ISSUER=https://authelia.zharkaron.lab
+      - AUTH_OIDC_CLIENT_ID=homarr
+      - AUTH_OIDC_CLIENT_SECRET=AtB/uJoeY1s57jFXlTP2dCbVZK6uoSmY
+      - AUTH_OIDC_CLIENT_NAME=Authelia
+      - AUTH_OIDC_SCOPE_OVERWRITE=openid email profile groups
+      - AUTH_OIDC_GROUPS_ATTRIBUTE=groups
+      - AUTH_OIDC_AUTO_LOGIN=true
+      - AUTH_OIDC_FORCE_USERINFO=true
+      - AUTH_LOGOUT_REDIRECT_URL=https://authelia.zharkaron.lab/logout
+      - NODE_EXTRA_CA_CERTS=/certs/ca.pem
+    extra_hosts:
+      - "authelia.zharkaron.lab:172.22.0.11"
     networks:
       internal:
         ipv4_address: 172.22.0.30
-
-  homepage-friends:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage-friends
-    restart: unless-stopped
-    environment:
-      - HOMEPAGE_ALLOWED_HOSTS=friends.zharkaron.lab
-    volumes:
-      - ./homepage/config-friends:/app/config:Z
-    networks:
-      internal:
-        ipv4_address: 172.22.0.31
 
   authelia-redis:
     image: redis:alpine

@@ -5,3 +5,4 @@ authelia/redis/
 authelia/db.sqlite3
 authelia/notifications.yml
 caddy/certs/
+homarr/config/

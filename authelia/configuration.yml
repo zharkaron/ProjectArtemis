@@ -21,11 +21,82 @@ authentication_backend:
   file:
     path: /config/users.yml
 
+identity_providers:
+  oidc:
+    hmac_secret: fXcOx5NNx4ABxyz+PxmuDwV23gB9vjdrkkGSv2ZlS1F8yjg2+YgsD2CuzjncR03F
+    jwks:
+      - key: |
+          -----BEGIN PRIVATE KEY-----
+          MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCwIj/mf0HfhP3+
+          UBFz0GsmKBw21cTvODV7TnSQZtHNdtpY8LejSiVyre3cyj+SXazhyKBDJMZNMSij
+          GWyBd7KivIE494aWW02c2Lgg6yL2Iz9AUPC2tVIq3FJUadHgw6uxBzLzb0DLJBEP
+          2+aVgJB+1hQZHG8nI1ISX0FBHsmiaU6lp3taVmprxY6JJRJR+uVOiVF7AudZ/V2d
+          T9+Uv8HUDk6DZJ3aSccyCt0wR1M1TlMzPHPpz18Dfqm6694V85QxxUkkIedMjLhc
+          mEglmW8aV340HPCvckkNEgwdue3mDvTRg1OKPYq/FnyrHinZHiyoWhkPwiAgJHvI
+          i05XFO9NAgMBAAECggEAIK/ygPHcBUHWq1QrsP0cbYPjHJAWkLizQDOCsWvLguCM
+          TBY8VlsD0SETNDb6jkzBMVO83kkcXiYB3ybwOqS+q7HlH2/cc9n08OdNYJqSrfBD
+          pEmBKr9CxP6HbvAGibp2ig+GdqQOd8S1P+a1B8jIyCktqK1cuXw2Fn/ECfRPQksO
+          LLn4u+/qejYqwBLK/9oR3fq50U6ZmzLFfcLh2nmpXSE9NSJH2hj6ohK0MYSGEHED
+          eTahGHA9BB1F4PHePH//Z/Fa2ypkGUgyy0viggoZQDo3w0kqF8keUE02EoNQSzkd
+          LT0tTnC6bbvVeA9ceIzF8GnYoCCvo6aYc6BhiYZX1wKBgQD1oieNA0qQB2tNl5bO
+          7QXNkzb6Tkvx8S1KGiIBaDzn/nMDPslqY855hI6OxZXGUAYD8V1ttoI1qaVjO4RK
+          zBJNMPSNEl9olmbk+2+wC38udRVguqJBm5t4LQL1ItoPwTmBZVhsbrRUXI4qQgie
+          RxkwtqspXa3qtnlbKixtebE1ZwKBgQC3kTcCjxAuKVyUkDzrqXfZxmbQdE08HWub
+          0g9zXgQ0537ZxIcO33awYfJW78m2TGLM+VuMzYlO2gQsBlxyj66IKNKct62mzg1o
+          dvtdjsVj4lHu4k/VBKNG7SPTMyDj2OIHgs7g7WsdukRPgg/Bmm8D5XrXR7cd7SGY
+          e+sGar3xKwKBgG7a3LCmQJtZzdJ5zGTc0ZaijthOR7YMG11rB9fMvFgTHMLlLi9m
+          lcN/0Hqcr2iNqvlSj9C44nDnfC2Zqa28BbJympukJAzme89xrkksFxzXWGuMLzge
+          yv5kigYp0XH0yUgdfdeJ6rZ8AukNXihYfAThG8QSdDAOZByBnwVVO2WXAoGBAJZ6
+          AKklU3MzzsOuFXJtgmTP4dpBbEq6J0sdgDLnP/WKSw8Crl//yRC/yeOAP08kAN3c
+          DzM2DbfIuiDIuiHjLIRLSpLTcxNI1+7pkhbYgXDmxplXhW+ulJYAsRxhTjXYxTi4
+          /xOdK/C7j2HJ0Va4XQbJp9Av5qkuiRqxgjDJcZjvAoGBAM90YPL811z9ufdf5PXo
+          D5GNuIT2rGxa5hq/qcpsfMORp3AbuK5Tjws0hKBquHXPAJjOlIx3vCkGqylF1F4D
+          Nr9B8qgxOF4UFJ7zjfOQE9dhz2qdkzzWOWvti/75/gRNu+3WhDM0Ge7VoEA/THaJ
+          OeBmr82a+46dKmCpU6aM8Zd1
+          -----END PRIVATE KEY-----
+    access_token_lifespan: 1h
+    authorize_code_lifespan: 1m
+    id_token_lifespan: 1h
+    refresh_token_lifespan: 24h
+    cors:
+      endpoints:
+        - authorization
+        - token
+        - revocation
+        - end_session
+      allowed_origins:
+        - https://homepage.zharkaron.lab
+        - https://friends.zharkaron.lab
+    clients:
+      - client_id: homarr
+        client_name: Homarr
+        client_secret: AtB/uJoeY1s57jFXlTP2dCbVZK6uoSmY
+        public: false
+        authorization_policy: one_factor
+        redirect_uris:
+          - https://homepage.zharkaron.lab/api/auth/callback/oidc
+          - https://friends.zharkaron.lab/api/auth/callback/oidc
+        scopes:
+          - openid
+          - profile
+          - groups
+          - email
+        grant_types:
+          - authorization_code
+        response_types:
+          - code
+        userinfo_signed_response_alg: none
+        token_endpoint_auth_method: client_secret_basic
+
 access_control:
   default_policy: deny
   rules:
     - domain: authelia.zharkaron.lab
       policy: bypass
+    - domain: homepage.zharkaron.lab
+      policy: one_factor
+    - domain: friends.zharkaron.lab
+      policy: one_factor
     - domain: "*.zharkaron.lab"
       policy: bypass
       networks:
