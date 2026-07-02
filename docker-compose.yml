@@ -37,9 +37,7 @@ services:
         ipv4_address: 172.22.0.10
 
   caddy:
-    build:
-      context: ./caddy
-      dockerfile: Dockerfile
+    image: caddy:latest
     container_name: caddy
     ports:
       - "127.0.0.1:80:80"
