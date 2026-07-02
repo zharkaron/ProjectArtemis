@@ -140,6 +140,20 @@ services:
       internal:
         ipv4_address: 172.22.0.22
 
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=homepage.zharkaron.lab
+    volumes:
+      - ./homepage/config:/app/config:Z
+    networks:
+      internal:
+        ipv4_address: 172.22.0.30
+
 networks:
   default:
     driver: bridge

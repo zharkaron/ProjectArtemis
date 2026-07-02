@@ -1,0 +1,31 @@
+- Services:
+    - AdGuard:
+        icon: adguard-home
+        href: http://adguard.zharkaron.lab
+        description: DNS ad-blocker
+
+- Media:
+    - Navidrome:
+        icon: navidrome
+        href: http://music.zharkaron.lab
+        description: Music streaming
+
+- Storage:
+    - Nextcloud:
+        icon: nextcloud
+        href: http://cloud.zharkaron.lab
+        description: File sync & share
+
+- Infrastructure:
+    - Beszel:
+        icon: beszel
+        href: http://monitoring.zharkaron.lab
+        description: Server monitoring
+    - Dockge:
+        icon: dockge
+        href: http://dockge.zharkaron.lab
+        description: Docker stack manager
+    - WireGuard:
+        icon: wireguard
+        href: http://wireguard.zharkaron.lab
+        description: VPN management
