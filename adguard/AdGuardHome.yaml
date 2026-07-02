@@ -1,0 +1,51 @@
+bind_host: 0.0.0.0
+bind_port: 80
+users:
+  - name: admin
+    password: $2b$12$wpd1a2kDtcbKKCNWZri4.O0.bK0lPz/NFZwCV4JfpIoNWsE2rqDvy
+http_port: 80
+dns:
+  bind_hosts:
+    - 0.0.0.0
+  port: 53
+  protection_enabled: true
+  filtering_enabled: true
+  blocking_mode: nxdomain
+  blocked_response_ttl: 10
+  querylog_enabled: true
+  querylog_file_enabled: true
+  ratelimit: 20
+  ratelimit_whitelist: []
+  refuse_any: true
+  upstream_dns:
+    - https://dns.cloudflare.com/dns-query
+    - https://dns.google/dns-query
+    - https://dns.quad9.net/dns-query
+  bootstrap_dns:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 9.9.9.9
+  edns_client_subnet: false
+  enable_dnssec: true
+  filtering:
+    - url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+      name: AdGuard DNS filter
+      enabled: true
+    - url: https://easylist.to/easylist/easylist.txt
+      name: EasyList
+      enabled: true
+    - url: https://easylist.to/easylist/easyprivacy.txt
+      name: EasyPrivacy
+      enabled: true
+    - url: https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblock_plus&showintro=1&mimetype=plaintext
+      name: Peter Lowe's list
+      enabled: true
+    - url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+      name: StevenBlack's Unified Hosts
+      enabled: true
+  safebrowsing_enabled: true
+  safesearch_enabled: false
+  blocked_services: []
+filters_update_interval: 24
+themes:
+  dark_mode: true

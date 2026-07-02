@@ -1,3 +1,6 @@
 :80 {
+    handle_path /adguard/* {
+        reverse_proxy adguard:80
+    }
     reverse_proxy navidrome:4533
 }

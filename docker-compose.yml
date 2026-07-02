@@ -7,6 +7,8 @@ services:
       - WG_HOST=165.227.12.213
       - PASSWORD_HASH=$$2b$$12$$5rJFpRDemdIiOnUhFilQb.TF3gzRyxBMHYCji.v2JvkujAb4/MUNS
       - WG_DEFAULT_ADDRESS=10.8.0.x
+      - WG_DEFAULT_DNS=172.20.0.53
+      - WG_ALLOWED_IPS=0.0.0.0/0
     volumes:
       - ./vpn:/etc/wireguard:Z
     ports:
@@ -18,6 +20,9 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
     restart: unless-stopped
+    networks:
+      internal:
+        ipv4_address: 172.20.0.2
 
   navidrome:
     image: deluan/navidrome:latest
@@ -61,5 +66,23 @@ services:
     command: --interval 300
     restart: unless-stopped
 
+  adguard:
+    image: adguard/adguardhome:latest
+    container_name: adguard
+    volumes:
+      - ./adguard/AdGuardHome.yaml:/opt/adguardhome/conf/AdGuardHome.yaml:Z
+      - ./adguard/data:/opt/adguardhome/work:Z
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    restart: unless-stopped
+    networks:
+      internal:
+        ipv4_address: 172.20.0.53
+
 networks:
   internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
