@@ -1,7 +1,7 @@
 users:
   zharkaron:
     displayname: Zharkaron
-    password: "$PLACEHOLDER"
+    password: "$argon2id$v=19$m=65536,t=3,p=4$MYgBmnA0RKCwvubMu81i5w$yqf6gdHFpLvyoxwlUgi3weHckxoKyyL6PSGYmMGBCxk"
     email: daron.valdiviaceron@gmail.com
     groups:
       - admin
