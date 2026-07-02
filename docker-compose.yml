@@ -69,7 +69,7 @@ services:
     container_name: nextcloud
     volumes:
       - ./nextcloud/data:/var/www/html:Z
-      - ./music/library:/music:ro,Z
+      - ./music/library:/music:Z
       - ./media/pictures:/media/pictures:Z
       - ./media/videos:/media/videos:Z
     environment:
