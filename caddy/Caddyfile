@@ -5,52 +5,62 @@
     }
 }
 
-zharkaron.lab:80 {
+zharkaron.lab {
+    tls internal
     import authelia
     redir / /adguard/
 }
 
-music.zharkaron.lab:80 {
+music.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy navidrome:4533
 }
 
-wireguard.zharkaron.lab:80 {
+wireguard.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy wg-easy:51821
 }
 
-cloud.zharkaron.lab:80 {
+cloud.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy nextcloud:80
 }
 
-adguard.zharkaron.lab:80 {
+adguard.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy adguard:80
 }
 
-monitoring.zharkaron.lab:80 {
+monitoring.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy beszel:8090
 }
 
-beszel.zharkaron.lab:80 {
+beszel.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy beszel:8090
 }
 
-dockge.zharkaron.lab:80 {
+dockge.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy dockge:5001
 }
 
-homepage.zharkaron.lab:80 {
+homepage.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy homepage:3000
 }
 
-friends.zharkaron.lab:80 {
+friends.zharkaron.lab {
+    tls internal
     import authelia
     reverse_proxy homepage-friends:3000
 }
@@ -58,9 +68,4 @@ friends.zharkaron.lab:80 {
 authelia.zharkaron.lab {
     tls internal
     reverse_proxy authelia:9091
-}
-
-# Redirect HTTP authelia to HTTPS
-authelia.zharkaron.lab:80 {
-    redir https://authelia.zharkaron.lab{uri}
 }
