@@ -152,7 +152,7 @@ services:
     volumes:
       - ./homarr/config:/appdata:Z
       - /var/run/docker.sock:/var/run/docker.sock:ro,Z
-      - ./caddy/certs:/certs:ro,Z
+      - ./caddy/certs:/certs:ro
     environment:
       - TZ=UTC
       - SECRET_ENCRYPTION_KEY=678edf0762d2dce8a7a6016c0dad9aa91b19f604a09d75d79c4775c3634acbbe
