@@ -204,9 +204,6 @@ filtering:
     - domain: friends.zharkaron.lab
       answer: 172.22.0.11
       enabled: true
-    - domain: authelia.zharkaron.lab
-      answer: 172.22.0.11
-      enabled: true
   safe_fs_patterns: []
   safebrowsing_cache_size: 1048576
   safesearch_cache_size: 1048576
