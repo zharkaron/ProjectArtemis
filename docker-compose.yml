@@ -13,7 +13,6 @@ services:
       - ./vpn:/etc/wireguard:Z
     ports:
       - "51820:51820/udp"
-      - "51821:51821/tcp"
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -40,8 +39,6 @@ services:
   caddy:
     image: caddy:latest
     container_name: caddy
-    ports:
-      - "8080:80"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro,Z
     networks:
@@ -73,9 +70,6 @@ services:
     volumes:
       - ./adguard/AdGuardHome.yaml:/opt/adguardhome/conf/AdGuardHome.yaml:Z
       - ./adguard/data:/opt/adguardhome/work:Z
-    ports:
-      - "53:53/udp"
-      - "53:53/tcp"
     restart: unless-stopped
     networks:
       internal:
