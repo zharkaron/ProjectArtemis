@@ -135,6 +135,7 @@ services:
       - ./dockge/stacks:/opt/stacks:Z
     environment:
       - DOCKGE_STACKS_DIR=/opt/stacks
+      - DOCKGE_ENABLE_CONSOLE=true
     networks:
       internal:
         ipv4_address: 172.22.0.22
