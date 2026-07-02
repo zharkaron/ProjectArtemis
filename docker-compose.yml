@@ -23,8 +23,8 @@ services:
     image: deluan/navidrome:latest
     container_name: navidrome
     volumes:
-      - ./music/data:/data
-      - ./music/library:/music:ro
+      - ./music/data:/data:Z
+      - ./music/library:/music:ro,Z
     environment:
       ND_LOGLEVEL: info
       ND_SCANSCHEDULE: 1h
