@@ -30,12 +30,16 @@ dns:
   rewrites:
     - domain: zharkaron.lab
       answer: 172.21.0.11
+      enabled: true
     - domain: music.zharkaron.lab
       answer: 172.21.0.11
+      enabled: true
     - domain: wireguard.zharkaron.lab
       answer: 172.21.0.11
+      enabled: true
     - domain: adguard.zharkaron.lab
       answer: 172.21.0.11
+      enabled: true
   filtering:
     - url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
       name: AdGuard DNS filter
