@@ -122,6 +122,10 @@ services:
   dockge:
     image: louislam/dockge:latest
     container_name: dockge
+    security_opt:
+      - label=disable
+    group_add:
+      - 990
     restart: unless-stopped
     ports:
       - "5001:5001"
