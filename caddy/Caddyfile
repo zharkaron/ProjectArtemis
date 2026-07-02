@@ -23,7 +23,7 @@ monitoring.zharkaron.lab:80 {
 }
 
 beszel.zharkaron.lab:80 {
-    redir /monitoring.zharkaron.lab{uri}
+    reverse_proxy beszel:9520
 }
 
 dockge.zharkaron.lab:80 {
