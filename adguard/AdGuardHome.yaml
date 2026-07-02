@@ -27,6 +27,15 @@ dns:
     - 9.9.9.9
   edns_client_subnet: false
   enable_dnssec: true
+  rewrites:
+    - domain: zharkaron.lab
+      answer: 172.21.0.11
+    - domain: music.zharkaron.lab
+      answer: 172.21.0.11
+    - domain: wireguard.zharkaron.lab
+      answer: 172.21.0.11
+    - domain: adguard.zharkaron.lab
+      answer: 172.21.0.11
   filtering:
     - url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
       name: AdGuard DNS filter

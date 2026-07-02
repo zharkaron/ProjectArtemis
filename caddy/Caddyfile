@@ -1,6 +1,15 @@
-:80 {
-    handle_path /adguard/* {
-        reverse_proxy adguard:80
-    }
+zharkaron.lab:80 {
+    redir / /adguard/
+}
+
+music.zharkaron.lab:80 {
     reverse_proxy navidrome:4533
+}
+
+wireguard.zharkaron.lab:80 {
+    reverse_proxy wg-easy:51821
+}
+
+adguard.zharkaron.lab:80 {
+    reverse_proxy adguard:80
 }
