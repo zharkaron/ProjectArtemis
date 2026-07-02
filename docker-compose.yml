@@ -53,9 +53,7 @@ services:
       - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=smtp.gmail.com
       - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=587
       - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=daron.valdiviaceron@gmail.com
-      # Generate a Gmail App Password at https://myaccount.google.com/apppasswords
-      # Then uncomment and fill in below:
-      # - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=your-16-char-app-password
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=ajrs dxov vvfz dsxd
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:z
     security_opt:
