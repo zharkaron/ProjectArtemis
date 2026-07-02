@@ -1,0 +1,17 @@
+- Services:
+    - AdGuard:
+        icon: adguard-home
+        href: http://adguard.zharkaron.lab
+        description: DNS ad-blocker
+
+- Media:
+    - Navidrome:
+        icon: navidrome
+        href: http://music.zharkaron.lab
+        description: Music streaming
+
+- Storage:
+    - Nextcloud:
+        icon: nextcloud
+        href: http://cloud.zharkaron.lab
+        description: File sync & share

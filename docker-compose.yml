@@ -154,6 +154,20 @@ services:
       internal:
         ipv4_address: 172.22.0.30
 
+  homepage-friends:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage-friends
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      - HOMEPAGE_ALLOWED_HOSTS=friends.zharkaron.lab
+    volumes:
+      - ./homepage/config-friends:/app/config:Z
+    networks:
+      internal:
+        ipv4_address: 172.22.0.31
+
 networks:
   default:
     driver: bridge

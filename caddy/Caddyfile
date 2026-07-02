@@ -33,3 +33,7 @@ dockge.zharkaron.lab:80 {
 homepage.zharkaron.lab:80 {
     reverse_proxy homepage:3000
 }
+
+friends.zharkaron.lab:80 {
+    reverse_proxy homepage-friends:3000
+}
