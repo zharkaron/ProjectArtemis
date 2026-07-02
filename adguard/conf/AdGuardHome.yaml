@@ -1,19 +1,39 @@
-bind_host: 0.0.0.0
-bind_port: 80
-users:
-  - name: admin
-    password: $2b$12$wpd1a2kDtcbKKCNWZri4.O0.bK0lPz/NFZwCV4JfpIoNWsE2rqDvy
-http_port: 80
+schema_version: 34
+clients:
+  persistent: []
+  runtime_sources:
+    arp: true
+    dhcp: true
+    hosts: true
+    rdns: false
+    whois: true
 dns:
   bind_hosts:
     - 0.0.0.0
+  bootstrap_dns:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 9.9.9.9
+  edns_client_subnet:
+    enabled: false
+  enable_dnssec: true
+  filtering:
+    - enabled: true
+      name: AdGuard DNS filter
+      url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
+    - enabled: true
+      name: EasyList
+      url: https://easylist.to/easylist/easylist.txt
+    - enabled: true
+      name: EasyPrivacy
+      url: https://easylist.to/easylist/easyprivacy.txt
+    - enabled: true
+      name: Peter Lowe's list
+      url: https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblock_plus&showintro=1&mimetype=plaintext
+    - enabled: true
+      name: StevenBlack's Unified Hosts
+      url: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
   port: 53
-  protection_enabled: true
-  filtering_enabled: true
-  blocking_mode: nxdomain
-  blocked_response_ttl: 10
-  querylog_enabled: true
-  querylog_file_enabled: true
   ratelimit: 20
   ratelimit_whitelist: []
   refuse_any: true
@@ -21,12 +41,16 @@ dns:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
     - https://dns.quad9.net/dns-query
-  bootstrap_dns:
-    - 1.1.1.1
-    - 8.8.8.8
-    - 9.9.9.9
-  edns_client_subnet: false
-  enable_dnssec: true
+  upstream_mode: load_balance
+filtering:
+  blocked_response_ttl: 10
+  blocked_services:
+    ids: []
+    schedule:
+      time_zone: Local
+  blocking_mode: nxdomain
+  filtering_enabled: true
+  protection_enabled: true
   rewrites:
     - domain: zharkaron.lab
       answer: 172.21.0.11
@@ -57,8 +81,20 @@ dns:
       name: StevenBlack's Unified Hosts
       enabled: true
   safebrowsing_enabled: true
-  safesearch_enabled: false
-  blocked_services: []
 filters_update_interval: 24
+http:
+  address: 0.0.0.0:80
+http_port: 80
+querylog:
+  enabled: true
+  file_enabled: true
+  interval: 90d
+  size_memory: 1000
+statistics:
+  enabled: true
+  interval: 1d
 themes:
   dark_mode: true
+users:
+  - name: admin
+    password: $2b$12$wpd1a2kDtcbKKCNWZri4.O0.bK0lPz/NFZwCV4JfpIoNWsE2rqDvy
