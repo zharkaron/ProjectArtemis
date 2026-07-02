@@ -1,0 +1,46 @@
+services:
+
+  wg-easy:
+    image: ghcr.io/wg-easy/wg-easy
+    container_name: wg-easy
+    environment:
+      - WG_HOST= 165.227.12.213
+      - PASSWORD= "$$2a$$12$$AqrRUIyDx82c1cr10loFlusJJh6KnMtX9iUSllDm7GMBjuvDbQQCK"
+      - WG_DEFAULT_ADDRESS=10.8.0.x
+    volumes:
+      - ./vpn:/etc/wireguard
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.ip_forward=1
+    restart: unless-stopped
+
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    volumes:
+      - ./music/data:/data
+      - ./music/library:/music:ro
+    environment:
+      ND_LOGLEVEL: info
+      ND_SCANSCHEDULE: 1h
+    restart: unless-stopped
+    networks:
+      - internal
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    ports:
+      - "10.8.0.1:80:80"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - internal
+
+networks:
+  internal:
