@@ -1,0 +1,7 @@
+users:
+  daron:
+    displayname: Daron
+    password: "$PLACEHOLDER"
+    email: daron.valdiviaceron@gmail.com
+    groups:
+      - admin

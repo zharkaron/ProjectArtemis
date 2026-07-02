@@ -1,3 +1,6 @@
 media/
 nextcloud/data/
 homepage/config/logs/
+authelia/redis/
+authelia/db.sqlite3
+authelia/notifications.yml
