@@ -29,7 +29,7 @@ access_control:
     - domain: "*.zharkaron.lab"
       policy: bypass
       networks:
-        - 10.8.0.0/24
+        - 172.22.0.0/24
     - domain: "*.zharkaron.lab"
       policy: one_factor
 
