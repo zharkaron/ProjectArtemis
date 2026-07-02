@@ -5,67 +5,71 @@
     }
 }
 
+(tls) {
+    tls /etc/caddy/certs/wildcard.pem /etc/caddy/certs/wildcard-key.pem
+}
+
 zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     redir / /adguard/
 }
 
 music.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy navidrome:4533
 }
 
 wireguard.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy wg-easy:51821
 }
 
 cloud.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy nextcloud:80
 }
 
 adguard.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy adguard:80
 }
 
 monitoring.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy beszel:8090
 }
 
 beszel.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy beszel:8090
 }
 
 dockge.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy dockge:5001
 }
 
 homepage.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy homepage:3000
 }
 
 friends.zharkaron.lab {
-    tls internal
+    import tls
     import authelia
     reverse_proxy homepage-friends:3000
 }
 
 authelia.zharkaron.lab {
-    tls internal
+    import tls
     reverse_proxy authelia:9091
 }
