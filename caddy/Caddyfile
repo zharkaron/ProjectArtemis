@@ -29,3 +29,7 @@ beszel.zharkaron.lab:80 {
 dockge.zharkaron.lab:80 {
     reverse_proxy dockge:5001
 }
+
+homepage.zharkaron.lab:80 {
+    reverse_proxy homepage:3000
+}
