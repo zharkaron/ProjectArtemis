@@ -4,8 +4,6 @@
 
 server:
   address: tcp://0.0.0.0:9091
-  trusted_proxies:
-    - 172.22.0.0/24
 
 log:
   level: info
