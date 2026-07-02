@@ -55,6 +55,12 @@ friends.zharkaron.lab:80 {
     reverse_proxy homepage-friends:3000
 }
 
-authelia.zharkaron.lab:80 {
+authelia.zharkaron.lab {
+    tls internal
     reverse_proxy authelia:9091
+}
+
+# Redirect HTTP authelia to HTTPS
+authelia.zharkaron.lab:80 {
+    redir https://authelia.zharkaron.lab{uri}
 }
