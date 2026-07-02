@@ -31,6 +31,9 @@ services:
     environment:
       ND_LOGLEVEL: info
       ND_SCANSCHEDULE: 1h
+      ND_EXTAUTH_TRUSTEDSOURCES: 172.22.0.0/24
+      ND_EXTAUTH_USERHEADER: Remote-User
+      ND_ENABLEUSEREDITING: false
     restart: unless-stopped
     networks:
       internal:
@@ -101,6 +104,9 @@ services:
     image: henrygd/beszel:latest
     container_name: beszel
     restart: unless-stopped
+    environment:
+      - TRUSTED_AUTH_HEADER=Remote-User
+      - DISABLE_PASSWORD_AUTH=true
     volumes:
       - ./beszel/data:/data:Z
     networks:
@@ -135,6 +141,7 @@ services:
     environment:
       - DOCKGE_STACKS_DIR=/opt/stacks
       - DOCKGE_ENABLE_CONSOLE=true
+      - DOCKGE_DISABLE_AUTH=true
     networks:
       internal:
         ipv4_address: 172.22.0.22
