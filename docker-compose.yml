@@ -8,7 +8,7 @@ services:
       - PASSWORD_HASH= "$$2a$$12$$AqrRUIyDx82c1cr10loFlusJJh6KnMtX9iUSllDm7GMBjuvDbQQCK"
       - WG_DEFAULT_ADDRESS=10.8.0.x
     volumes:
-      - ./vpn:/etc/wireguard
+      - ./vpn:/etc/wireguard:Z
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"
@@ -38,7 +38,7 @@ services:
     ports:
       - "10.8.0.1:80:80"
     volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro,Z
     networks:
       - internal
 
