@@ -6,7 +6,7 @@
 }
 
 (tls) {
-    tls /etc/caddy/certs/wildcard.pem /etc/caddy/certs/wildcard-key.pem
+    tls /etc/caddy/certs/fullchain.pem /etc/caddy/certs/wildcard-key.pem
 }
 
 zharkaron.lab {

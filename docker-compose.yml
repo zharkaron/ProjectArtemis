@@ -153,6 +153,7 @@ services:
       - ./homarr/config:/appdata:Z
       - /var/run/docker.sock:/var/run/docker.sock:ro,Z
       - ./caddy/certs:/certs:ro
+      - ./homarr/certs/combined.crt:/etc/ssl/certs/ca-certificates.crt:ro
     environment:
       - TZ=UTC
       - SECRET_ENCRYPTION_KEY=678edf0762d2dce8a7a6016c0dad9aa91b19f604a09d75d79c4775c3634acbbe
@@ -167,6 +168,7 @@ services:
       - AUTH_OIDC_FORCE_USERINFO=true
       - AUTH_LOGOUT_REDIRECT_URL=https://authelia.zharkaron.lab/logout
       - NODE_EXTRA_CA_CERTS=/certs/ca.pem
+      - NODE_OPTIONS=--use-system-ca
     extra_hosts:
       - "authelia.zharkaron.lab:172.22.0.11"
     networks:
@@ -176,6 +178,8 @@ services:
   authelia-redis:
     image: redis:alpine
     container_name: authelia-redis
+    security_opt:
+      - label=disable
     volumes:
       - ./authelia/redis:/data
     networks:
