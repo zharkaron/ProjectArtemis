@@ -152,54 +152,12 @@ services:
     volumes:
       - ./homarr/config:/appdata:Z
       - /var/run/docker.sock:/var/run/docker.sock:ro,Z
-      - ./caddy/certs:/certs:ro
-      - ./homarr/certs/combined.crt:/etc/ssl/certs/ca-certificates.crt:ro
     environment:
       - TZ=UTC
       - SECRET_ENCRYPTION_KEY=678edf0762d2dce8a7a6016c0dad9aa91b19f604a09d75d79c4775c3634acbbe
-      - AUTH_PROVIDERS=oidc
-      - AUTH_OIDC_ISSUER=https://authelia.zharkaron.lab
-      - AUTH_OIDC_CLIENT_ID=homarr
-      - AUTH_OIDC_CLIENT_SECRET=AtB/uJoeY1s57jFXlTP2dCbVZK6uoSmY
-      - AUTH_OIDC_CLIENT_NAME=Authelia
-      - AUTH_OIDC_SCOPE_OVERWRITE=openid email profile groups
-      - AUTH_OIDC_GROUPS_ATTRIBUTE=groups
-      - AUTH_OIDC_AUTO_LOGIN=true
-      - AUTH_OIDC_FORCE_USERINFO=true
-      - AUTH_LOGOUT_REDIRECT_URL=https://authelia.zharkaron.lab/logout
-      - NODE_EXTRA_CA_CERTS=/certs/ca.pem
-      - NODE_OPTIONS=--use-system-ca
-    extra_hosts:
-      - "authelia.zharkaron.lab:172.22.0.11"
     networks:
       internal:
         ipv4_address: 172.22.0.30
-
-  authelia-redis:
-    image: redis:alpine
-    container_name: authelia-redis
-    security_opt:
-      - label=disable
-    volumes:
-      - ./authelia/redis:/data
-    networks:
-      internal:
-        ipv4_address: 172.22.0.41
-    restart: unless-stopped
-
-  authelia:
-    image: authelia/authelia:latest
-    container_name: authelia
-    volumes:
-      - ./authelia:/config:Z
-    environment:
-      - TZ=UTC
-    networks:
-      internal:
-        ipv4_address: 172.22.0.40
-    depends_on:
-      - authelia-redis
-    restart: unless-stopped
 
 networks:
   default:
