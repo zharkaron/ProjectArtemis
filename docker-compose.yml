@@ -5,7 +5,7 @@ services:
     container_name: wg-easy
     environment:
       - WG_HOST= 165.227.12.213
-      - PASSWORD_HASH= "$$2a$$12$$AqrRUIyDx82c1cr10loFlusJJh6KnMtX9iUSllDm7GMBjuvDbQQCK"
+      - PASSWORD_HASH= "$$2b$$12$$5rJFpRDemdIiOnUhFilQb.TF3gzRyxBMHYCji.v2JvkujAb4/MUNS"
       - WG_DEFAULT_ADDRESS=10.8.0.x
     volumes:
       - ./vpn:/etc/wireguard:Z
