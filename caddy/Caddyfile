@@ -19,11 +19,11 @@ adguard.zharkaron.lab:80 {
 }
 
 monitoring.zharkaron.lab:80 {
-    reverse_proxy beszel:9520
+    reverse_proxy beszel:8090
 }
 
 beszel.zharkaron.lab:80 {
-    reverse_proxy beszel:9520
+    reverse_proxy beszel:8090
 }
 
 dockge.zharkaron.lab:80 {
