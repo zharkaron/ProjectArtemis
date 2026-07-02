@@ -155,7 +155,7 @@ services:
       - ./caddy/certs:/certs:ro,Z
     environment:
       - TZ=UTC
-      - SECRET_ENCRYPTION_KEY=x4Pk7Htb+mSWRz5j4Ffd6RgX8ICRPXsO1Dy7vvG1toE
+      - SECRET_ENCRYPTION_KEY=678edf0762d2dce8a7a6016c0dad9aa91b19f604a09d75d79c4775c3634acbbe
       - AUTH_PROVIDERS=oidc
       - AUTH_OIDC_ISSUER=https://authelia.zharkaron.lab
       - AUTH_OIDC_CLIENT_ID=homarr

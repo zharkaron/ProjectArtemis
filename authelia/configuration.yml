@@ -54,16 +54,17 @@ identity_providers:
           Nr9B8qgxOF4UFJ7zjfOQE9dhz2qdkzzWOWvti/75/gRNu+3WhDM0Ge7VoEA/THaJ
           OeBmr82a+46dKmCpU6aM8Zd1
           -----END PRIVATE KEY-----
-    access_token_lifespan: 1h
-    authorize_code_lifespan: 1m
-    id_token_lifespan: 1h
-    refresh_token_lifespan: 24h
+    lifespans:
+      access_token: 1h
+      authorize_code: 1m
+      id_token: 1h
+      refresh_token: 24h
     cors:
       endpoints:
         - authorization
         - token
         - revocation
-        - end_session
+        - userinfo
       allowed_origins:
         - https://homepage.zharkaron.lab
         - https://friends.zharkaron.lab
