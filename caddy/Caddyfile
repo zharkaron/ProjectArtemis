@@ -62,9 +62,4 @@ homepage.zharkaron.lab {
     reverse_proxy homarr:7575
 }
 
-friends.zharkaron.lab {
-    import tls
-    import auth
-    reverse_proxy homarr:7575
-}
 
