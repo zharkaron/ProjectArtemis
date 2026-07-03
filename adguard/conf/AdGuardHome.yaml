@@ -189,9 +189,7 @@ filtering:
     - domain: adguard.zharkaron.lab
       answer: 172.22.0.11
       enabled: true
-    - domain: monitoring.zharkaron.lab
-      answer: 172.22.0.11
-      enabled: true
+
     - domain: beszel.zharkaron.lab
       answer: 172.22.0.11
       enabled: true
