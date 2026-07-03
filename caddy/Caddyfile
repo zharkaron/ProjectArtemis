@@ -1,6 +1,6 @@
 (auth) {
     basicauth {
-        zharkaron $2a$14$Lg1sv1w7QzE7OkVjQKh9aumck8zJ6s6Iuo/S/Di6y.15lCpkGpKDG
+        zharkaron $2a$14$q7qBWAEH/y8LHkU06IeTXuRxmpKvkoECH.lS5EOEUHyvO63Xt1w2S
     }
 }
 
