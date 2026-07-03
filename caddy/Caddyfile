@@ -1,59 +1,45 @@
-(auth) {
-    basicauth {
-        zharkaron $2a$14$q7qBWAEH/y8LHkU06IeTXuRxmpKvkoECH.lS5EOEUHyvO63Xt1w2S
-    }
-}
-
 (tls) {
     tls /etc/caddy/certs/fullchain.pem /etc/caddy/certs/wildcard-key.pem
 }
 
 zharkaron.lab {
     import tls
-    import auth
     redir / /adguard/
 }
 
 music.zharkaron.lab {
     import tls
-    import auth
     reverse_proxy navidrome:4533
 }
 
 wireguard.zharkaron.lab {
     import tls
-    import auth
     reverse_proxy wg-easy:51821
 }
 
 cloud.zharkaron.lab {
     import tls
-    import auth
     reverse_proxy nextcloud:80
 }
 
 adguard.zharkaron.lab {
     import tls
-    import auth
     reverse_proxy adguard:80
 }
 
 
 beszel.zharkaron.lab {
     import tls
-    import auth
     reverse_proxy beszel:8090
 }
 
 dockge.zharkaron.lab {
     import tls
-    import auth
     reverse_proxy dockge:5001
 }
 
 homepage.zharkaron.lab {
     import tls
-    import auth
     reverse_proxy homarr:7575
 }
 
