@@ -51,4 +51,9 @@ mealie.zharkaron.lab {
     reverse_proxy mealie:9000
 }
 
+finance.zharkaron.lab {
+    import tls
+    reverse_proxy actual-budget:5006
+}
+
 

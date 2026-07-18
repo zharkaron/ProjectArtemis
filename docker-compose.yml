@@ -186,6 +186,16 @@ services:
       internal:
         ipv4_address: 172.22.0.31
 
+  actual-budget:
+    image: actualbudget/actual-server:latest
+    container_name: actual-budget
+    restart: unless-stopped
+    volumes:
+      - ./actual-budget/data:/data:Z
+    networks:
+      internal:
+        ipv4_address: 172.22.0.32
+
 networks:
   default:
     driver: bridge
