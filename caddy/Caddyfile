@@ -48,7 +48,7 @@ homepage.zharkaron.lab {
 
 mealie.zharkaron.lab {
     import tls
-    reverse_proxy mealie:9925
+    reverse_proxy mealie:9000
 }
 
 
