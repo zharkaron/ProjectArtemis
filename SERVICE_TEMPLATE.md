@@ -46,6 +46,7 @@ KEY=value
 | 172.22.0.22     | dockge        |
 | 172.22.0.30     | homarr        |
 | 172.22.0.31     | mealie        |
+| 172.22.0.32     | actual-budget |
 | 172.22.0.50     | step-ca       |
 | 172.22.0.53     | adguard       |
 | 172.22.0.100+   | (next available) |
