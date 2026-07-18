@@ -46,7 +46,7 @@ services:
       - "127.0.0.1:80:80"
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro,Z
-      - ./caddy/certs:/etc/caddy/certs:ro,Z
+      - ./step-ca/certs/root_ca.crt:/etc/caddy/certs/root_ca.crt:ro,Z
     networks:
       internal:
         ipv4_address: 172.22.0.11
@@ -99,6 +99,20 @@ services:
     networks:
       internal:
         ipv4_address: 172.22.0.53
+
+  step-ca:
+    image: smallstep/step-ca:0.27.5
+    container_name: step-ca
+    dns:
+      - 172.22.0.53
+    volumes:
+      - ./step-ca/config:/home/step/config:z
+      - ./step-ca/certs:/home/step/certs:z
+      - ./step-ca/secrets:/home/step/secrets:z
+    networks:
+      internal:
+        ipv4_address: 172.22.0.50
+    restart: unless-stopped
 
   beszel:
     image: henrygd/beszel:latest

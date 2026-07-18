@@ -1,5 +1,8 @@
 (tls) {
-    tls /etc/caddy/certs/fullchain.pem /etc/caddy/certs/wildcard-key.pem
+    tls {
+        ca https://step-ca:9000/acme/acme/directory
+        ca_root /etc/caddy/certs/root_ca.crt
+    }
 }
 
 zharkaron.lab {
