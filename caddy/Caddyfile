@@ -1,7 +1,7 @@
 (tls) {
     tls {
-        acme_ca https://step-ca:9000/acme/acme/directory
-        acme_ca_root /etc/caddy/certs/root_ca.crt
+        ca https://step-ca:9000/acme/acme/directory
+        ca_root /etc/caddy/certs/root_ca.crt
     }
 }
 

@@ -4,3 +4,5 @@ caddy/certs/
 homarr/config/
 step-ca/config/
 step-ca/certs/
+step-ca/secrets/
+step-ca/db/

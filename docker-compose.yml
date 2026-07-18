@@ -106,8 +106,9 @@ services:
     dns:
       - 172.22.0.53
     volumes:
-      - ./step-ca/config:/home/step/config:Z
-      - ./step-ca/certs:/home/step/certs:Z
+      - ./step-ca/config:/home/step/config:z
+      - ./step-ca/certs:/home/step/certs:z
+      - ./step-ca/secrets:/home/step/secrets:z
     networks:
       internal:
         ipv4_address: 172.22.0.50
