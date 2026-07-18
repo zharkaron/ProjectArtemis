@@ -2,3 +2,5 @@ media/
 nextcloud/data/
 caddy/certs/
 homarr/config/
+step-ca/config/
+step-ca/certs/
