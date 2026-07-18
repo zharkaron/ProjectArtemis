@@ -46,4 +46,9 @@ homepage.zharkaron.lab {
     reverse_proxy homarr:7575
 }
 
+mealie.zharkaron.lab {
+    import tls
+    reverse_proxy mealie:9925
+}
+
 

@@ -173,6 +173,19 @@ services:
       internal:
         ipv4_address: 172.22.0.30
 
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:latest
+    container_name: mealie
+    restart: unless-stopped
+    volumes:
+      - ./mealie/data:/app/data:Z
+    environment:
+      - TZ=UTC
+      - ALLOW_SIGNUP=false
+    networks:
+      internal:
+        ipv4_address: 172.22.0.31
+
 networks:
   default:
     driver: bridge
