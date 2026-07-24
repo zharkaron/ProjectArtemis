@@ -266,7 +266,7 @@ services:
     depends_on:
       - wger-web
     volumes:
-      - ./wger/config/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./wger/config/nginx.conf:/etc/nginx/conf.d/default.conf:ro,Z
       - wger-static:/wger/static:ro
       - wger-media:/wger/media:ro
     expose:
