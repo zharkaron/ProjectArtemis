@@ -246,9 +246,7 @@ services:
   wger-cache:
     image: docker.io/redis:7-alpine
     container_name: wger-cache
-    volumes:
-      - ./wger/config/redis.conf:/usr/local/etc/redis/redis.conf
-    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    command: ["redis-server", "--maxmemory", "256mb", "--maxmemory-policy", "volatile-lru"]
     expose:
       - 6379
     healthcheck:
