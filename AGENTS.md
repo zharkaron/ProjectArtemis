@@ -35,6 +35,10 @@ Follow `SERVICE_TEMPLATE.md` in the repo root. Quick steps:
 | adguard      | 172.22.0.53    | 80    | adguard.zharkaron.lab         |
 | wg-easy      | (published)    | 51820 | wireguard.zharkaron.lab       |
 | watchtower   | (no IP)        | -     | (internal only)               |
+| wger-web     | 172.22.0.100   | 8000  | workout.zharkaron.lab         |
+| wger-db      | 172.22.0.101   | 5432  | (internal only)               |
+| wger-cache   | 172.22.0.102   | 6379  | (internal only)               |
+| wger-nginx   | 172.22.0.103   | 80    | (internal only)               |
 
 ## Homarr + Caddy Basic Auth
 
