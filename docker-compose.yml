@@ -186,6 +186,38 @@ services:
       internal:
         ipv4_address: 172.22.0.31
 
+  librechat-mongo:
+    image: mongo:6
+    container_name: librechat-mongo
+    restart: unless-stopped
+    volumes:
+      - librechat-mongo-data:/data/db:Z
+    expose:
+      - 27017
+    networks:
+      internal:
+        ipv4_address: 172.22.0.41
+
+  librechat:
+    image: ghcr.io/danny-avila/librechat:latest
+    container_name: librechat
+    restart: unless-stopped
+    depends_on:
+      - librechat-mongo
+    ports:
+      - "127.0.0.1:3080:3080"
+    volumes:
+      - ./librechat/config/librechat.yaml:/app/librechat.yaml:ro,Z
+      - librechat-data:/app/data:Z
+    environment:
+      - MONGO_URI=mongodb://librechat-mongo:27017/LibreChat
+      - JWT_SECRET=ea1d5c7b9f3e8a2d4b6f0c1e3a5b7d9f
+      - ALLOW_REGISTRATION=true
+      - TZ=UTC
+    networks:
+      internal:
+        ipv4_address: 172.22.0.40
+
   wger-web:
     image: docker.io/wger/server:latest
     container_name: wger-web
@@ -323,6 +355,8 @@ volumes:
   wger-celery-beat:
   wger-static:
   wger-media:
+  librechat-mongo-data:
+  librechat-data:
 
 networks:
   default:

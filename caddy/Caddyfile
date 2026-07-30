@@ -51,6 +51,11 @@ mealie.zharkaron.lab {
     reverse_proxy mealie:9000
 }
 
+librechat.zharkaron.lab {
+    import tls
+    reverse_proxy librechat:3080
+}
+
 workout.zharkaron.lab {
     import tls
     reverse_proxy wger-nginx:80

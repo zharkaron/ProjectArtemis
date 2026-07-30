@@ -31,6 +31,8 @@ Follow `SERVICE_TEMPLATE.md` in the repo root. Quick steps:
 | dockge       | 172.22.0.22    | 5001  | dockge.zharkaron.lab          |
 | homarr       | 172.22.0.30    | 7575  | homepage.zharkaron.lab        |
 | mealie       | 172.22.0.31    | 9000  | mealie.zharkaron.lab          |
+| librechat    | 172.22.0.40    | 3080  | librechat.zharkaron.lab       |
+| librechat-mongo | 172.22.0.41 | 27017 | (internal only)               |
 | step-ca      | 172.22.0.50    | 9000  | (internal only)               |
 | adguard      | 172.22.0.53    | 80    | adguard.zharkaron.lab         |
 | wg-easy      | (published)    | 51820 | wireguard.zharkaron.lab       |

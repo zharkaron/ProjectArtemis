@@ -1,0 +1,13 @@
+version: 1.1.0
+cache: true
+endpoints:
+  ollama:
+    baseURL: http://10.8.0.2:11434
+    models:
+      default:
+        - llama3
+        - mistral
+        - mixtral
+        - codellama
+        - deepseek-coder
+        - phi

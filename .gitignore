@@ -2,6 +2,7 @@ media/
 nextcloud/data/
 caddy/certs/
 homarr/config/
+librechat/data/
 step-ca/config/
 step-ca/certs/
 step-ca/secrets/
