@@ -215,7 +215,6 @@ services:
       - JWT_REFRESH_SECRET=62275def15c15f724c8961923daf4730
       - CRED_KEY=307e853b66666694c4790408646cd0c2
       - CRED_IV=a2b4c6d8e0f1a2b3c4d5e6f7a8b9c0d1
-      - GROQ_API_KEY=${GROQ_API_KEY:-placeholder}
       - ALLOW_REGISTRATION=true
       - TZ=UTC
     networks:

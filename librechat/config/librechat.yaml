@@ -18,19 +18,5 @@ endpoints:
       titleModel: "llama3"
       modelDisplayLabel: "Ollama (Laptop)"
       dropParams: ["stop"]
-    - name: "Groq"
-      apiKey: "${GROQ_API_KEY}"
-      baseURL: "https://api.groq.com/openai/v1"
-      models:
-        default:
-          - "llama3-70b-8192"
-          - "llama3-8b-8192"
-          - "mixtral-8x7b-32768"
-          - "gemma2-9b-it"
-        fetch: true
-      titleConvo: true
-      titleModel: "llama3-70b-8192"
-      modelDisplayLabel: "Groq"
-      dropParams: ["stop"]
   allowedAddresses:
     - "10.8.0.2:11434"
