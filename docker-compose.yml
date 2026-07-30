@@ -8,7 +8,7 @@ services:
       - PASSWORD_HASH=$$2b$$12$$5rJFpRDemdIiOnUhFilQb.TF3gzRyxBMHYCji.v2JvkujAb4/MUNS
       - WG_DEFAULT_ADDRESS=10.8.0.x
       - WG_DEFAULT_DNS=172.22.0.53
-      - WG_ALLOWED_IPS=0.0.0.0/0
+      - WG_ALLOWED_IPS=172.22.0.0/24,10.8.0.0/24
     volumes:
       - ./vpn:/etc/wireguard:Z
     ports:
