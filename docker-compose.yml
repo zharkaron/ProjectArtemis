@@ -211,7 +211,10 @@ services:
       - librechat-data:/app/data:Z
     environment:
       - MONGO_URI=mongodb://librechat-mongo:27017/LibreChat
-      - JWT_SECRET=ea1d5c7b9f3e8a2d4b6f0c1e3a5b7d9f
+      - JWT_SECRET=8190f37e3231523c635c5ec54c9a1e62
+      - JWT_REFRESH_SECRET=62275def15c15f724c8961923daf4730
+      - CRED_KEY=307e853b66666694c4790408646cd0c2
+      - CRED_IV=a2b4c6d8e0f1a2b3c4d5e6f7a8b9c0d1
       - ALLOW_REGISTRATION=true
       - TZ=UTC
     networks:
