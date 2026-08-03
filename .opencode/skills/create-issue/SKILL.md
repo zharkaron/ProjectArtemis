@@ -33,8 +33,33 @@ Key conventions to bake into the issue:
 
 # GATHER REQUIREMENTS
 
-Ask clarifying questions only if the request is ambiguous. One question at a time, max 3, and only
-questions that change what the issue says.
+The issue must describe exactly what the user wants — NOT an estimate. Do not proceed on
+assumptions. Use the `question` tool to ask the user directly.
+
+Keep asking questions until every item below is answered concretely. Batch related questions into a
+single `question` call when they belong together, but never stop until you have full knowledge:
+
+- **Goal** — what the user actually wants and why. What is broken or missing today?
+- **Scope** — what is in and what is explicitly out. Which existing service, config file, or
+  subdomain is affected?
+- **Behavior** — exact expected behavior, inputs and outputs, edge cases, error cases.
+- **For bugs** — steps to reproduce, expected vs. actual result, when it started, any logs/errors.
+- **For new services** — service purpose, subdomain, container image, port, data persistence needs,
+  auth model.
+- **Acceptance criteria** — how the user will verify it is done. Concrete and testable.
+- **Constraints** — requirements around security, storage, performance, or compatibility with the
+  existing stack (static IPs, SELinux labels, Caddy/AdGuard wiring).
+- **Priority/complexity** — urgency and effort.
+
+Rules:
+
+- Never invent or guess an answer. If the user has not told you, ask.
+- One focused question at a time (or a small batch via the `question` tool), and let the user answer
+  before asking the next.
+- If the user says "you decide" or "make it sensible", make a reasonable assumption, **state it
+  explicitly** in the issue as an assumption, and continue — do not block forever.
+- When you have all answers, reflect them back in one short confirmation before creating the issue,
+  so the user can correct anything before it is filed.
 
 # BUILD THE ISSUE BODY
 
@@ -74,6 +99,10 @@ Checkbox list, each verifiable.
 
 ## Constraints
 Project conventions (SELinux labels, static IPs, no Authelia, keep docs in sync, no secrets in git).
+
+## Assumptions
+Any decision made without explicit confirmation from the user (e.g. chosen subdomain, port,
+storage path). Must be empty if every detail was confirmed.
 
 ## Complexity
 Small | Medium | Large
