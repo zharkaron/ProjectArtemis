@@ -46,9 +46,18 @@ KEY=value
 | 172.22.0.22     | dockge        |
 | 172.22.0.30     | homarr        |
 | 172.22.0.31     | mealie        |
+| 172.22.0.40     | librechat     |
+| 172.22.0.41     | librechat-mongo |
 | 172.22.0.50     | step-ca       |
 | 172.22.0.53     | adguard       |
-| 172.22.0.100+   | (next available) |
+| 172.22.0.100    | wger-web      |
+| 172.22.0.101    | wger-db       |
+| 172.22.0.102    | wger-cache    |
+| 172.22.0.103    | wger-nginx    |
+
+Free ranges remain: `172.22.0.13-19`, `172.22.0.23-29`, `172.22.0.32-39`, `172.22.0.42-49`,
+`172.22.0.51-52`, `172.22.0.54-99`, `172.22.0.104-254`. Pick the next free IP and update this
+table when you add a service.
 
 ## Examples
 
