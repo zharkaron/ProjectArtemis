@@ -27,7 +27,7 @@ services:
     container_name: navidrome
     volumes:
       - ./music/data:/data:Z
-      - ./music/library:/music:ro,Z
+      - ./music/library:/music:ro,z
     environment:
       ND_LOGLEVEL: info
       ND_SCANSCHEDULE: 1h
@@ -76,7 +76,7 @@ services:
     container_name: nextcloud
     volumes:
       - ./nextcloud/data:/var/www/html:Z
-      - ./music/library:/music:Z
+      - ./music/library:/music:z
       - ./media/pictures:/media/pictures:Z
       - ./media/videos:/media/videos:Z
     environment:
@@ -135,7 +135,7 @@ services:
       - PORT=45876
       - KEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINl1Fat5NN1WZlPTNatdd8j++3d95F2zOFxlePWSeq/w
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro,Z
+      - /var/run/docker.sock:/var/run/docker.sock:ro,z
     networks:
       internal:
         ipv4_address: 172.22.0.21
@@ -166,7 +166,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./homarr/config:/appdata:Z
-      - /var/run/docker.sock:/var/run/docker.sock:ro,Z
+      - /var/run/docker.sock:/var/run/docker.sock:ro,z
     environment:
       - TZ=UTC
       - SECRET_ENCRYPTION_KEY=678edf0762d2dce8a7a6016c0dad9aa91b19f604a09d75d79c4775c3634acbbe
