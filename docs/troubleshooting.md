@@ -2,6 +2,28 @@
 
 Common problems when editing or operating this stack, and how to fix them.
 
+## VPN (WireGuard) feels slow or drops
+
+The wg-easy config is usually fine; the symptom is almost always the **droplet running out of
+resources**, not the tunnel. Check before touching the VPN:
+
+- Raw path to a client is fast but tunnel pings are slow/variable:
+  `ssh my-droplet` then `ping <client-endpoint>` (host) vs
+  `docker exec wg-easy ping 10.8.0.x` (through the tunnel). A big gap means host-side delays.
+- Confirm resource exhaustion: `uptime` (load > 1 on this 1-vCPU droplet), `free -h` (swap full),
+  `docker stats --no-stream`.
+- The stack is heavily oversized for a 1 vCPU / ~2GiB droplet. The real fix is resizing the
+  droplet. Interim measures:
+  - **wger is profiled** (`profiles: ["wger"]` in docker-compose.yml) so it is **not** started by
+    the normal deploy. Start it deliberately with `docker compose --profile wger up -d`. Its
+    celery worker was the top CPU consumer (concurrency is now 1, `CACHE_API_EXERCISES_CELERY_FORCE_UPDATE=False`).
+  - Every service has a `mem_limit` to stop one container from thrashing swap.
+  - `WG_DEFAULT_MTU=1280` is set on wg-easy as a safety net for clients on flaky/MTU-reduced
+    paths. Existing client configs bake in the old MTU — re-download them in the wg-easy UI
+    (or set `MTU = 1280` in the client's `[Interface]`) for it to take effect.
+- A peer in `wg show` with no endpoint and no handshake never connected — delete that client in
+  the wg-easy UI.
+
 ## Mount or permission errors (SELinux)
 
 The droplet runs Fedora (or another SELinux-enabled distro). Bind mounts need a `:Z` (or `:z`)
