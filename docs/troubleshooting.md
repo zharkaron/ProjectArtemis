@@ -14,13 +14,14 @@ resources**, not the tunnel. Check before touching the VPN:
   `docker stats --no-stream`.
 - The stack is heavily oversized for a 1 vCPU / ~2GiB droplet. The real fix is resizing the
   droplet. Interim measures:
-  - **wger is profiled** (`profiles: ["wger"]` in docker-compose.yml) so it is **not** started by
-    the normal deploy. Start it deliberately with `docker compose --profile wger up -d`. Its
-    celery worker was the top CPU consumer (concurrency is now 1, `CACHE_API_EXERCISES_CELERY_FORCE_UPDATE=False`).
+  - **Non-essential services are profiled** (`profiles: ["extra"]` in docker-compose.yml) so they
+    are **not** started by the normal deploy. Start them deliberately with
+    `docker compose --profile extra up -d`.
+  - **wger is profiled** (`profiles: ["wger"]`) and only starts with `docker compose --profile wger up -d`.
   - Every service has a `mem_limit` to stop one container from thrashing swap.
-  - `WG_DEFAULT_MTU=1280` is set on wg-easy as a safety net for clients on flaky/MTU-reduced
-    paths. Existing client configs bake in the old MTU — re-download them in the wg-easy UI
-    (or set `MTU = 1280` in the client's `[Interface]`) for it to take effect.
+- `WG_DEFAULT_MTU=1420` is set on wg-easy for better throughput. Existing client configs may
+  still use the old MTU — re-download them in the wg-easy UI (or set `MTU = 1420` in the
+  client's `[Interface]`) for it to take effect.
 - A peer in `wg show` with no endpoint and no handshake never connected — delete that client in
   the wg-easy UI.
 
@@ -91,6 +92,6 @@ htpasswd -bnBC 12 "" 'your-password' | tr -d ':\n'
 ## Secrets hygiene
 
 - Never commit API keys or passwords to tracked files.
-- Sensitive data dirs are gitignored (`nextcloud/data/`, `homarr/config/`, `step-ca/secrets/`,
+- Sensitive data dirs are gitignored (`homarr/config/`, `step-ca/secrets/`,
   etc.) — leave them out of commits.
 - Put runtime-only secrets in untracked `.env` files or droplet-only config, not the repo.

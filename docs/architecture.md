@@ -16,8 +16,8 @@ containers on one internal bridge network, fronted by a single reverse proxy.
                          |    |    |
         +----------------+    |    +----------------+
         |                     |                     |
-   navidrome 172.22.0.10  nextcloud 172.22.0.12  ... other services
-   (music)                 (cloud)
+   navidrome 172.22.0.10  ... other services
+   (music)
 ```
 
 - Internal bridge network: `172.22.0.0/24` (defined as `internal` in docker-compose.yml).
@@ -60,13 +60,14 @@ containers on one internal bridge network, fronted by a single reverse proxy.
 
 Containers use `restart: unless-stopped`; changed definitions are recreated automatically.
 Because this pipeline exists, merging to `main` deploys. There is no manual deployment step for
-repo changes.
+repo changes. The default deploy starts only essential services; profiled services (`extra`, `wger`)
+must be started manually on the droplet.
 
 ## Data and persistence
 
 - The repo tracks **config only**. Runtime data lives either in gitignored bind mounts
-  (`nextcloud/data/`, `homarr/config/`, `music/data/`, ...) or named volumes
-  (`wger-postgres`, `librechat-data`, ...). See the `volumes:` blocks in docker-compose.yml.
+  (`homarr/config/`, `music/data/`, ...) or named volumes
+  (`wger-postgres`, ...). See the `volumes:` blocks in docker-compose.yml.
 - Backups of data dirs are out of scope of this repo; treat any `docker compose` data volume as
   the only copy.
 

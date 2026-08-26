@@ -20,11 +20,6 @@ wireguard.zharkaron.lab {
     reverse_proxy wg-easy:51821
 }
 
-cloud.zharkaron.lab {
-    import tls
-    reverse_proxy nextcloud:80
-}
-
 adguard.zharkaron.lab {
     import tls
     reverse_proxy adguard:80
@@ -49,11 +44,6 @@ homepage.zharkaron.lab {
 mealie.zharkaron.lab {
     import tls
     reverse_proxy mealie:9000
-}
-
-librechat.zharkaron.lab {
-    import tls
-    reverse_proxy librechat:3080
 }
 
 workout.zharkaron.lab {

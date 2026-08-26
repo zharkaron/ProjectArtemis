@@ -9,20 +9,17 @@ Deploying is merging to `main`: a GitHub Action pulls the latest code on the dro
 
 | Service | IP | Port | Subdomain | Purpose |
 |---|---|---|---|---|
-| navidrome | 172.22.0.10 | 4533 | music.zharkaron.lab | Music streaming |
 | caddy | 172.22.0.11 | 80 | *.zharkaron.lab | Reverse proxy + TLS |
-| nextcloud | 172.22.0.12 | 80 | cloud.zharkaron.lab | File sync / cloud |
+| navidrome | 172.22.0.10 | 4533 | music.zharkaron.lab | Music streaming (extra profile) |
 | beszel | 172.22.0.20 | 8090 | beszel.zharkaron.lab | Server monitoring |
 | beszel-agent | 172.22.0.21 | 45876 | (internal) | Beszel metrics agent |
-| dockge | 172.22.0.22 | 5001 | dockge.zharkaron.lab | Docker stack manager |
 | homarr | 172.22.0.30 | 7575 | homepage.zharkaron.lab | Dashboard |
-| mealie | 172.22.0.31 | 9000 | mealie.zharkaron.lab | Recipe manager |
-| librechat | 172.22.0.40 | 3080 | librechat.zharkaron.lab | AI chat |
-| librechat-mongo | 172.22.0.41 | 27017 | (internal) | LibreChat database |
+| dockge | 172.22.0.22 | 5001 | dockge.zharkaron.lab | Docker stack manager (extra profile) |
+| mealie | 172.22.0.31 | 9000 | mealie.zharkaron.lab | Recipe manager (extra profile) |
 | step-ca | 172.22.0.50 | 9000 | (internal) | Private CA for TLS |
 | adguard | 172.22.0.53 | 80 | adguard.zharkaron.lab | DNS + ad blocking |
 | wg-easy | (published) | 51820/udp | wireguard.zharkaron.lab | WireGuard VPN |
-| watchtower | (no IP) | - | (internal) | Auto-updates images |
+| watchtower | (no IP) | - | (internal) | Auto-updates images (extra profile) |
 | wger-web | 172.22.0.100 | 8000 | workout.zharkaron.lab | Workout tracker |
 | wger-db | 172.22.0.101 | 5432 | (internal) | wger database |
 | wger-cache | 172.22.0.102 | 6379 | (internal) | wger redis cache |
@@ -37,6 +34,10 @@ Deploying is merging to `main`: a GitHub Action pulls the latest code on the dro
 - The droplet is `165.227.12.213` (SSH alias: `my-droplet`).
 
 Request flow: device -> AdGuard (DNS lookup) -> Caddy (TLS handshake) -> service container.
+
+- **Resource profiles**: non-essential services (`navidrome`, `dockge`, `mealie`, `watchtower`) are
+  behind `profiles: ["extra"]` to keep the default footprint small on the 1 vCPU / 2 GB droplet.
+  Start them with `docker compose --profile extra up -d`.
 
 See [docs/architecture.md](docs/architecture.md) for details.
 

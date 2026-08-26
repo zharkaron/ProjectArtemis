@@ -40,14 +40,11 @@ KEY=value
 |-----------------|---------------|
 | 172.22.0.10     | navidrome     |
 | 172.22.0.11     | caddy         |
-| 172.22.0.12     | nextcloud     |
 | 172.22.0.20     | beszel        |
 | 172.22.0.21     | beszel-agent  |
 | 172.22.0.22     | dockge        |
 | 172.22.0.30     | homarr        |
 | 172.22.0.31     | mealie        |
-| 172.22.0.40     | librechat     |
-| 172.22.0.41     | librechat-mongo |
 | 172.22.0.50     | step-ca       |
 | 172.22.0.53     | adguard       |
 | 172.22.0.100    | wger-web      |
@@ -55,7 +52,7 @@ KEY=value
 | 172.22.0.102    | wger-cache    |
 | 172.22.0.103    | wger-nginx    |
 
-Free ranges remain: `172.22.0.13-19`, `172.22.0.23-29`, `172.22.0.32-39`, `172.22.0.42-49`,
+Free ranges remain: `172.22.0.12-19`, `172.22.0.23-29`, `172.22.0.32-39`, `172.22.0.40-49`,
 `172.22.0.51-52`, `172.22.0.54-99`, `172.22.0.104-254`. Pick the next free IP and update this
 table when you add a service.
 

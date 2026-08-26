@@ -9,7 +9,7 @@ services:
       - WG_DEFAULT_ADDRESS=10.8.0.x
       - WG_DEFAULT_DNS=172.22.0.53
       - WG_ALLOWED_IPS=172.22.0.0/24,10.8.0.0/24
-      - WG_DEFAULT_MTU=1280
+      - WG_DEFAULT_MTU=1420
     volumes:
       - ./vpn:/etc/wireguard:Z
     ports:
@@ -20,6 +20,9 @@ services:
     sysctls:
       - net.ipv4.ip_forward=1
     mem_limit: 256m
+    mem_reservation: 128m
+    cpus: 0.5
+    cpu_shares: 2048
     restart: unless-stopped
     networks:
       - internal
@@ -27,6 +30,7 @@ services:
   navidrome:
     image: deluan/navidrome:latest
     container_name: navidrome
+    profiles: ["extra"]
     volumes:
       - ./music/data:/data:Z
       - ./music/library:/music:ro,z
@@ -37,6 +41,8 @@ services:
       ND_EXTAUTH_USERHEADER: Remote-User
       ND_ENABLEUSEREDITING: false
     mem_limit: 512m
+    cpus: 0.3
+    cpu_shares: 512
     restart: unless-stopped
     networks:
       internal:
@@ -52,6 +58,9 @@ services:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro,Z
       - ./step-ca/certs/root_ca.crt:/etc/caddy/certs/root_ca.crt:ro,Z
     mem_limit: 256m
+    mem_reservation: 128m
+    cpus: 0.3
+    cpu_shares: 1024
     networks:
       internal:
         ipv4_address: 172.22.0.11
@@ -59,6 +68,7 @@ services:
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower
+    profiles: ["extra"]
     environment:
       - DOCKER_API_VERSION=1.40
       - WATCHTOWER_NOTIFICATIONS=email
@@ -72,29 +82,11 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:z
     security_opt:
       - label=disable
-    command: --interval 300
+    command: --interval 86400
     mem_limit: 256m
+    cpus: 0.1
+    cpu_shares: 256
     restart: unless-stopped
-
-  nextcloud:
-    image: nextcloud:latest
-    container_name: nextcloud
-    volumes:
-      - ./nextcloud/data:/var/www/html:Z
-      - ./music/library:/music:z
-      - ./media/pictures:/media/pictures:Z
-      - ./media/videos:/media/videos:Z
-    environment:
-      - NEXTCLOUD_ADMIN_USER=admin
-      - NEXTCLOUD_ADMIN_PASSWORD=changeme
-      - NEXTCLOUD_TRUSTED_DOMAINS=cloud.zharkaron.lab
-      - NEXTCLOUD_DATA_DIR=/var/www/html/data
-      - SQLITE_DATABASE=nextcloud
-    mem_limit: 1024m
-    restart: unless-stopped
-    networks:
-      internal:
-        ipv4_address: 172.22.0.12
 
   adguard:
     image: adguard/adguardhome:latest
@@ -103,6 +95,9 @@ services:
       - ./adguard/conf:/opt/adguardhome/conf:Z
       - ./adguard/data:/opt/adguardhome/work:Z
     mem_limit: 512m
+    mem_reservation: 256m
+    cpus: 0.3
+    cpu_shares: 1024
     restart: unless-stopped
     networks:
       internal:
@@ -132,6 +127,8 @@ services:
     volumes:
       - ./beszel/data:/data:Z
     mem_limit: 256m
+    cpus: 0.1
+    cpu_shares: 512
     networks:
       internal:
         ipv4_address: 172.22.0.20
@@ -146,6 +143,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro,z
     mem_limit: 128m
+    cpus: 0.05
+    cpu_shares: 512
     networks:
       internal:
         ipv4_address: 172.22.0.21
@@ -153,6 +152,7 @@ services:
   dockge:
     image: louislam/dockge:latest
     container_name: dockge
+    profiles: ["extra"]
     security_opt:
       - label=disable
     group_add:
@@ -167,6 +167,8 @@ services:
       - DOCKGE_ENABLE_CONSOLE=true
       - DOCKGE_DISABLE_AUTH=true
     mem_limit: 512m
+    cpus: 0.2
+    cpu_shares: 512
     networks:
       internal:
         ipv4_address: 172.22.0.22
@@ -182,6 +184,8 @@ services:
       - TZ=UTC
       - SECRET_ENCRYPTION_KEY=678edf0762d2dce8a7a6016c0dad9aa91b19f604a09d75d79c4775c3634acbbe
     mem_limit: 512m
+    cpus: 0.2
+    cpu_shares: 512
     networks:
       internal:
         ipv4_address: 172.22.0.30
@@ -189,6 +193,7 @@ services:
   mealie:
     image: ghcr.io/mealie-recipes/mealie:latest
     container_name: mealie
+    profiles: ["extra"]
     restart: unless-stopped
     volumes:
       - ./mealie/data:/app/data:Z
@@ -196,46 +201,11 @@ services:
       - TZ=UTC
       - ALLOW_SIGNUP=false
     mem_limit: 512m
+    cpus: 0.2
+    cpu_shares: 512
     networks:
       internal:
         ipv4_address: 172.22.0.31
-
-  librechat-mongo:
-    image: mongo:6
-    container_name: librechat-mongo
-    restart: unless-stopped
-    volumes:
-      - librechat-mongo-data:/data/db:Z
-    expose:
-      - 27017
-    mem_limit: 1024m
-    networks:
-      internal:
-        ipv4_address: 172.22.0.41
-
-  librechat:
-    image: ghcr.io/danny-avila/librechat:latest
-    container_name: librechat
-    restart: unless-stopped
-    depends_on:
-      - librechat-mongo
-    ports:
-      - "127.0.0.1:3080:3080"
-    volumes:
-      - ./librechat/config/librechat.yaml:/app/librechat.yaml:ro,Z
-      - librechat-data:/app/data:Z
-    environment:
-      - MONGO_URI=mongodb://librechat-mongo:27017/LibreChat
-      - JWT_SECRET=8190f37e3231523c635c5ec54c9a1e62
-      - JWT_REFRESH_SECRET=62275def15c15f724c8961923daf4730
-      - CRED_KEY=307e853b66666694c4790408646cd0c2
-      - CRED_IV=a2b4c6d8e0f1a2b3c4d5e6f7a8b9c0d1
-      - ALLOW_REGISTRATION=true
-      - TZ=UTC
-    mem_limit: 1024m
-    networks:
-      internal:
-        ipv4_address: 172.22.0.40
 
   wger-web:
     image: docker.io/wger/server:latest
@@ -386,15 +356,8 @@ volumes:
   wger-celery-beat:
   wger-static:
   wger-media:
-  librechat-mongo-data:
-  librechat-data:
 
 networks:
-  default:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.23.0.0/16
   internal:
     driver: bridge
     ipam:

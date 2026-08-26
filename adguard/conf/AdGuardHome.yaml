@@ -183,9 +183,6 @@ filtering:
     - domain: wireguard.zharkaron.lab
       answer: 172.22.0.11
       enabled: true
-    - domain: cloud.zharkaron.lab
-      answer: 172.22.0.11
-      enabled: true
     - domain: adguard.zharkaron.lab
       answer: 172.22.0.11
       enabled: true
@@ -197,9 +194,6 @@ filtering:
       answer: 172.22.0.11
       enabled: true
     - domain: homepage.zharkaron.lab
-      answer: 172.22.0.11
-      enabled: true
-    - domain: librechat.zharkaron.lab
       answer: 172.22.0.11
       enabled: true
     - domain: workout.zharkaron.lab

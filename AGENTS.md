@@ -54,30 +54,29 @@ Validate before committing:
 - **Authelia was removed.** Do not add Authelia containers or `authelia.zharkaron.lab` routing.
 - **Ports**: Caddy binds host `127.0.0.1:80`; wg-easy publishes `51820/udp`. Only those leave the
   internal network.
-- **watchtower** auto-updates images every 5 minutes; config changes still need a redeploy.
-- **Secrets**: do not commit API keys/passwords to tracked files. Data dirs like `nextcloud/data/`,
-  `homarr/config/`, `step-ca/secrets/` are gitignored — leave them alone.
-- **LibreChat** config lives in `librechat/config/librechat.yaml`; env secrets (`JWT_*`, `CRED_*`)
-  are in docker-compose.yml. Registration is enabled; the first user becomes admin.
+- **watchtower** auto-updates images daily; config changes still need a redeploy.
+- Non-essential services (`navidrome`, `dockge`, `mealie`, `watchtower`) are behind
+  `profiles: ["extra"]`. Start them with `docker compose --profile extra up -d`.
+- CPU limits protect the VPN on the 1 vCPU droplet. Do not remove `cpus` or `cpu_shares` from
+  essential services (wg-easy, caddy, adguard).
+- **Secrets**: do not commit API keys/passwords to tracked files. Data dirs like `homarr/config/`,
+  `step-ca/secrets/` are gitignored — leave them alone.
 
 ## Service and IP allocation
 
-| Service | IP | Port | Subdomain |
-|---|---|---|---|
-| navidrome | 172.22.0.10 | 4533 | music.zharkaron.lab |
-| caddy | 172.22.0.11 | 80 | (all *.zharkaron.lab) |
-| nextcloud | 172.22.0.12 | 80 | cloud.zharkaron.lab |
-| beszel | 172.22.0.20 | 8090 | beszel.zharkaron.lab |
-| beszel-agent | 172.22.0.21 | 45876 | (internal only) |
-| dockge | 172.22.0.22 | 5001 | dockge.zharkaron.lab |
-| homarr | 172.22.0.30 | 7575 | homepage.zharkaron.lab |
-| mealie | 172.22.0.31 | 9000 | mealie.zharkaron.lab |
-| librechat | 172.22.0.40 | 3080 | librechat.zharkaron.lab |
-| librechat-mongo | 172.22.0.41 | 27017 | (internal only) |
-| step-ca | 172.22.0.50 | 9000 | (internal only) |
-| adguard | 172.22.0.53 | 80 | adguard.zharkaron.lab |
-| wg-easy | (published) | 51820/udp | wireguard.zharkaron.lab |
-| watchtower | (no IP) | - | (internal only) |
+| Service | IP | Port | Subdomain | Profile |
+|---|---|---|---|---|
+| caddy | 172.22.0.11 | 80 | (all *.zharkaron.lab) | — |
+| beszel | 172.22.0.20 | 8090 | beszel.zharkaron.lab | — |
+| beszel-agent | 172.22.0.21 | 45876 | (internal only) | — |
+| homarr | 172.22.0.30 | 7575 | homepage.zharkaron.lab | — |
+| step-ca | 172.22.0.50 | 9000 | (internal only) | — |
+| adguard | 172.22.0.53 | 80 | adguard.zharkaron.lab | — |
+| wg-easy | (published) | 51820/udp | wireguard.zharkaron.lab | — |
+| navidrome | 172.22.0.10 | 4533 | music.zharkaron.lab | extra |
+| dockge | 172.22.0.22 | 5001 | dockge.zharkaron.lab | extra |
+| mealie | 172.22.0.31 | 9000 | mealie.zharkaron.lab | extra |
+| watchtower | (no IP) | - | (internal only) | extra |
 | wger-web | 172.22.0.100 | 8000 | workout.zharkaron.lab |
 | wger-db | 172.22.0.101 | 5432 | (internal only) |
 | wger-cache | 172.22.0.102 | 6379 | (internal only) |
